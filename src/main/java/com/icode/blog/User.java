@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
+
 @Entity
 public class User {
 
@@ -17,6 +19,8 @@ public class User {
     private String email;
 
     private String password; // added password field
+
+    private String description;
 
     private Timestamp creationTime;
 
