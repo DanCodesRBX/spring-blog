@@ -1,8 +1,6 @@
 package com.icode.blog;
 
-import com.icode.blog.BlogPost;
 import jakarta.persistence.*;
-import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.List;
 
