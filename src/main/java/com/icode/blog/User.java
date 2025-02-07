@@ -3,8 +3,10 @@ package com.icode.blog;
 import com.icode.blog.BlogPost;
 import jakarta.persistence.*;
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.beans.factory.annotation.Value;
 
 @Entity
@@ -22,7 +24,8 @@ public class User {
 
     private String description;
 
-    private Timestamp creationTime;
+    @CreationTimestamp
+    private Instant creationTime;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<BlogPost> postsMade; // list of posts made by the user
@@ -63,6 +66,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<BlogPost> getPostsMade() {
