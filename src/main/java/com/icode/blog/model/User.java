@@ -1,4 +1,4 @@
-package com.icode.blog;
+package com.icode.blog.model;
 
 import jakarta.persistence.*;
 import java.time.Instant;
