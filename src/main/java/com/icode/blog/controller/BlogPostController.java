@@ -1,11 +1,14 @@
 package com.icode.blog.controller;
 
+import java.util.List;
+
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.icode.blog.BlogPost;
+import com.icode.blog.model.BlogPost;
 
 public class BlogPostController {
     @GetMapping
@@ -18,13 +21,13 @@ public class BlogPostController {
     @GetMapping("/view/{id}")
     public String viewBlogPostById(@PathVariable Integer id, Model model) {
         BlogPost post = postService.findById(id);
-        if (post == null) 
+        if (post == null)
             return "redirect:/post";
 
         model.addAttribute("posts", post);
         return "post/view";
     }
-    
+
     @GetMapping("/add")
     public String addPostForm(Model model) {
         model.addAttribute("post", new BlogPost());
@@ -40,7 +43,7 @@ public class BlogPostController {
     @GetMapping("/edit/{id}")
     public String editBlogPostForm(@PathVariable Integer id, Model model) {
         BlogPost post = postService.findById(id);
-        if (post == null) 
+        if (post == null)
             return "redirect:/posts";
 
         model.addAttribute("blogpost", post);
@@ -63,11 +66,12 @@ public class BlogPostController {
         model.addAttribute("blogpost", post);
         return "blogpost/delete";
     }
+
     @PostMapping("/delete/{id}")
     public String deleteBlogPost(@PathVariable Integer id) {
         blogpostService.deleteById(id);
         return "redirect:/blogposts";
-        
+
     }
-      
+
 }
