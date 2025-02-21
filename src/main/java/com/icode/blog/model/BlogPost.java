@@ -1,4 +1,4 @@
-package com.icode.blog;
+package com.icode.blog.model;
 
 import java.util.List;
 import jakarta.persistence.*;
