@@ -2,6 +2,7 @@ package com.icode.blog.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,8 +10,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.icode.blog.model.BlogPost;
+import com.icode.blog.service.BlogPostService;
 
 public class BlogPostController {
+
+    @Autowired
+    BlogPostService postService;
+
     @GetMapping
     public String getAllBlogBlogPosts(Model model) {
         List<BlogPost> posts = postService.findAll();
@@ -52,7 +58,7 @@ public class BlogPostController {
 
     @PostMapping("/edit/{id}")
     public String editPost(@PathVariable Integer id, @ModelAttribute BlogPost post) {
-        post.setBlogPostById(id);
+        post.setId(id);
         postService.save(post);
         return "redirect:/blogpost/view/" + id;
     }
@@ -69,7 +75,7 @@ public class BlogPostController {
 
     @PostMapping("/delete/{id}")
     public String deleteBlogPost(@PathVariable Integer id) {
-        blogpostService.deleteById(id);
+        postService.deleteById(id);
         return "redirect:/blogposts";
 
     }
