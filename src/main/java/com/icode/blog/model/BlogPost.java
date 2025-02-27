@@ -5,21 +5,20 @@ import jakarta.persistence.*;
 
 @Entity
 public class BlogPost {
-   // list of users who liked the post
+    // list of users who liked the post
 
     // Getters and setters...
-    @Id     
-    @GeneratedValue(strategy = GenerationType.IDENTITY)     
-    private int id;      
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    private String content;      
+    private String content;
 
-    @ManyToOne     
-    @JoinColumn(name = "user_id")     
-    private User user; // owner of the post      
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user; // owner of the post
 
-    @OneToOne(mappedBy = "likedPosts")     
-    int likedByUsers;
+    int likes;
 
     // Getter and Setter for id
     public int getId() {
@@ -49,12 +48,12 @@ public class BlogPost {
     }
 
     // Getter and Setter for likedByUsers
-    int getLikedByUsers() {
-        return likedByUsers;
+    public int getLikes() {
+        return likes;
     }
 
-    public void setLikedByUsers(int likedByUsers) {
-        this.likedByUsers = likedByUsers;
+    public void setLikedByUsers(int likes) {
+        this.likes = likes;
     }
-    
+
 }

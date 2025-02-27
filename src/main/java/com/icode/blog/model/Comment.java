@@ -5,20 +5,28 @@ import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "`Comment`")
 public class Comment {
 
     private int likes;
     private String content;
-    private int commentid;
 
-    @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "comment_id")
+    private Comment target;
+
+    @OneToMany(mappedBy = "target", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Comment> replies;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -54,12 +62,12 @@ public class Comment {
         this.content = content;
     }
 
-    public int getCommentid() {
-        return commentid;
+    public Long getId() {
+        return id;
     }
 
-    public void setCommentid(int commentid) {
-        this.commentid = commentid;
+    public void setId(Long commentid) {
+        this.id = commentid;
     }
 
     public BlogPost getPost() {
