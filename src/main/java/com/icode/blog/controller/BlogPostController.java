@@ -3,17 +3,17 @@ package com.icode.blog.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.icode.blog.model.BlogPost;
 import com.icode.blog.service.BlogPostService;
 
-@RestController
+@Controller
 public class BlogPostController {
 
     @Autowired
@@ -39,7 +39,7 @@ public class BlogPostController {
     @GetMapping("/add")
     public String addPostForm(Model model) {
         model.addAttribute("post", new BlogPost());
-        return "post/add";
+        return "add";
     }
 
     @PostMapping("/add")
