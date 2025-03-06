@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Posts.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+      
+</head>
+<body>
+
+<header>
+    <h1>Post Board</h1>
+    <h3>Write your posts here!</h3>
+</header>
+
+<div class="container">
+   
+    <div class="post-form">
+        <textarea id="postContent" placeholder="Write your message here..."></textarea>
+        <br>
+        <button onclick="submitPost()">Post Message</button>
+    </div>
+
+   
+    <div id="postsContainer">
+       
+    </div>
+</div>
+
+<script>
+    
+    function submitPost() {
+        const postContent = document.getElementById('postContent').value;
+        
+        
+        if (postContent.trim() === '') {
+            alert('Please write something to post.');
+            return;
+        }
+
+        const currentDate = new Date();
+        const formattedDate = currentDate.toLocaleString();
+
+        
+        const postElement = document.createElement('div');
+        postElement.classList.add('post');
+
+        postElement.innerHTML = `
+            <div class="content">${postContent}</div>
+            <div class="date">Posted on: ${formattedDate}</div>
+        `;
+
+        
+        document.getElementById('postsContainer').prepend(postElement);
+
+        
+        document.getElementById('postContent').value = '';
+
+        functionDelete(button)
+    }
+</script>
+
+</body>
+</html>
