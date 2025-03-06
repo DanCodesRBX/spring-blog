@@ -9,26 +9,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.icode.blog.model.BlogPost;
 import com.icode.blog.service.BlogPostService;
 
 @Controller
+@RequestMapping("/posts")
 public class BlogPostController {
 
     @Autowired
-    BlogPostService postService;
+    BlogPostService blogPostService;
 
     @GetMapping
     public String getAllBlogBlogPosts(Model model) {
-        List<BlogPost> posts = postService.findAll();
+        List<BlogPost> posts = blogPostService.findAll();
         model.addAttribute("posts", posts);
         return "post/list";
     }
 
-    @GetMapping("/view/{id}")
+    @GetMapping("/{id}")
     public String viewBlogPostById(@PathVariable Integer id, Model model) {
-        BlogPost post = postService.findById(id);
+        BlogPost post = blogPostService.findById(id);
         if (post == null)
             return "redirect:/post";
 
@@ -44,13 +46,13 @@ public class BlogPostController {
 
     @PostMapping("/add")
     public String addPost(@ModelAttribute BlogPost post) {
-        postService.save(post);
+        blogPostService.save(post);
         return "redirect:/posts";
     }
 
     @GetMapping("/edit/{id}")
     public String editBlogPostForm(@PathVariable Integer id, Model model) {
-        BlogPost post = postService.findById(id);
+        BlogPost post = blogPostService.findById(id);
         if (post == null)
             return "redirect:/posts";
 
@@ -61,25 +63,24 @@ public class BlogPostController {
     @PostMapping("/edit/{id}")
     public String editPost(@PathVariable Integer id, @ModelAttribute BlogPost post) {
         post.setId(id);
-        postService.save(post);
+        blogPostService.save(post);
         return "redirect:/blogpost/view/" + id;
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteBlogPostForm(@PathVariable Integer id, Model model) {
-        BlogPost post = postService.findById(id);
-        if (post == null) {
-            return "redirect:/blogposts";
-        }
-        model.addAttribute("blogpost", post);
-        return "blogpost/delete";
-    }
+    // @GetMapping("/delete/{id}")
+    // public String deleteBlogPostForm(@PathVariable Integer id, Model model) {
+    // BlogPost post = postService.findById(id);
+    // if (post == null) {
+    // return "redirect:/blogposts";
+    // }
+    // model.addAttribute("blogpost", post);
+    // return "blogpost/delete";
+    // }
 
     @PostMapping("/delete/{id}")
     public String deleteBlogPost(@PathVariable Integer id) {
-        postService.deleteById(id);
+        blogPostService.deleteById(id);
         return "redirect:/blogposts";
-
     }
 
 }

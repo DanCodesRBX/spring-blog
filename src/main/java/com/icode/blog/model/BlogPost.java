@@ -1,6 +1,5 @@
 package com.icode.blog.model;
 
-import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
