@@ -1,0 +1,25 @@
+body {
+    background-color: rgba(173, 255, 235, 0.897);
+  }
+  h1 {
+    color: rgb(47, 219, 148);
+    top: 21px; 
+    width: 50px;
+     
+  }
+  h2  {
+    color: rgb(61, 148, 247);
+  }
+  h3  {
+    color: rgb(207, 218, 62);
+  }
+  h4  {
+    color: rgb(128, 96, 134);
+  }
+  h5  {
+    color: rgba(212, 195, 34, 0.699);
+  }
+
+  n {
+
+  }
