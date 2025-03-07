@@ -25,29 +25,29 @@ public class BlogPostController {
     public String getAllBlogBlogPosts(Model model) {
         List<BlogPost> posts = blogPostService.findAll();
         model.addAttribute("posts", posts);
-        return "post/list";
+        return "posts/list";
     }
 
     @GetMapping("/{id}")
     public String viewBlogPostById(@PathVariable Integer id, Model model) {
         BlogPost post = blogPostService.findById(id);
         if (post == null)
-            return "redirect:/post";
+            return "redirect:/posts";
 
         model.addAttribute("posts", post);
-        return "post/view";
+        return "posts/view";
     }
 
     @GetMapping("/add")
     public String addPostForm(Model model) {
         model.addAttribute("post", new BlogPost());
-        return "add";
+        return "posts/add";
     }
 
     @PostMapping("/add")
     public String addPost(@ModelAttribute BlogPost post) {
         blogPostService.save(post);
-        return "redirect:/posts";
+        return "redirect:/posts/" + post.getId();
     }
 
     @GetMapping("/edit/{id}")
@@ -64,7 +64,8 @@ public class BlogPostController {
     public String editPost(@PathVariable Integer id, @ModelAttribute BlogPost post) {
         post.setId(id);
         blogPostService.save(post);
-        return "redirect:/blogpost/view/" + id;
+
+        return "redirect:/posts/" + id;
     }
 
     // @GetMapping("/delete/{id}")
@@ -80,7 +81,7 @@ public class BlogPostController {
     @PostMapping("/delete/{id}")
     public String deleteBlogPost(@PathVariable Integer id) {
         blogPostService.deleteById(id);
-        return "redirect:/blogposts";
+        return "redirect:/posts";
     }
 
 }
