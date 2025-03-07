@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete post</title>
+</head>
+<body>
+    <h1>Delete post</h1>
+    <p>Are you sure you want to delete this post?</p>
+    <form th:action="@{/posts/delete/{id}(id=${post.postId})}" method="post">
+        <p><button type="submit">Delete</button></p>
+    </form>
+    <a th:href="@{/posts}">Back to List</a>
+</body>
+</html>
