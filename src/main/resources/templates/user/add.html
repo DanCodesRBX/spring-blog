@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"></html>
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 class="header">Add/Edit User</h1>
+    <form action="#" th:action="@{/user/add}" th:object="${user}" method="post">
+        <p>Username: <input type="text" th:field="*{username}" /></p>
+        <p>Password: <input type="text" th:field="*{password}" /></p>
+        <p>Email: <input type="text" th:field="*{email}" /></p>
+        <p><button type="submit">Save</button></p>
+    </form>
+    <p><a href="https://www.google.com"><button>Return to Website :P</button></a></p>
+    <a th:href="@{/games}">Back to List</a>    
+</body>
+</html>
