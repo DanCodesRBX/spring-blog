@@ -13,6 +13,8 @@ public class BlogPost {
 
     private String content;
 
+    private String title;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user; // owner of the post
@@ -35,6 +37,14 @@ public class BlogPost {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     // Getter and Setter for user

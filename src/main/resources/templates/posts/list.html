@@ -1,1 +1,30 @@
-<!-- hi -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game List</title>
+</head>
+<body>
+    <h1>Game List</h1>
+    <a th:href="@{/posts/add}">Add New Game</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="post : ${posts}">
+                <td th:text="${post.title}">Title</td>
+                <td>
+                    <a th:href="@{/posts/${post.id}}">Go to post</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/}">Back to Home</a>
+</body>
+</html>
