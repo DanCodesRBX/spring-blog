@@ -12,6 +12,7 @@
     <form action="#" th:action="@{/posts/add}" th:object="${post}" method="post">
         <p>Title: <input type="text" th:field="*{title}" /></p>
         <p>Content: <input type="text" th:field="*{content}" /></p>
+        <p>User ID: <input type="number" th:field="*{content}" /></p>
         <p><button type="submit">Save</button></p>
     </form>
     <a th:href="@{/posts}">Back to List</a>
